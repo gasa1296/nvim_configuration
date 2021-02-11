@@ -31,6 +31,8 @@ filetype plugin indent on
 
 let g:airline_theme='cool'
 let g:netrw_liststyle=0
+let g:NERDTreeDirArrowExpandable = '▸'
+let g:NERDTreeDirArrowCollapsible = '▾'
 
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -47,6 +49,11 @@ function! s:show_documentation()
   endif
 endfunction
 
+inoremap "<CR> ""<left>
+inoremap '<CR> ''<left>
+inoremap (<CR> ()<left>
+inoremap [<CR> []<left>
+inoremap {<CR> {}<left>
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 inoremap <silent><expr> <TAB>  pumvisible() ? "\<C-n>" :  <SID>check_back_space() ? "\<TAB>" :  coc#refresh()
@@ -65,13 +72,8 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> <C-s> <Plug>(coc-range-select)
-inoremap "<CR> ""<left>
-inoremap '<CR> ''<left>
-inoremap (<CR> ()<left>
-inoremap [<CR> []<left>
-inoremap {<CR> {}<left>
-
-nnoremap <c-o> o<Esc>
+nnoremap <leader>o o<Esc>
+nnoremap <leader>O O<Esc>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
@@ -109,7 +111,7 @@ omap ac <Plug>(coc-classobj-a)
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') && v:this_session == '' | NERDTree | endif
 autocmd BufWinEnter * silent NERDTreeMirror
 
 augroup mygroup

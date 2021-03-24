@@ -1,12 +1,10 @@
-" Plugins instalados con plug-vim
 call plug#begin("~/.vim/plugged")
 Plug 'rust-lang/rust.vim'
-Plug 'preservim/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
-Plug 'tpope/vim-surround'
+Plug 'beyondwords/vim-twig'
 call plug#end()
 
 set nu rnu
@@ -14,10 +12,10 @@ set autoindent
 set expandtab
 set filetype 
 set shiftwidth=4
+set hidden
 set smarttab
 set wrap
 set tabpagemax=10
-set hidden
 set nobackup
 set nowritebackup
 set cmdheight=2
@@ -49,6 +47,7 @@ function! s:show_documentation()
   endif
 endfunction
 
+inoremap , ,<space>
 inoremap "<CR> ""<left>
 inoremap '<CR> ''<left>
 inoremap (<CR> ()<left>
@@ -123,5 +122,6 @@ augroup end
 command! -nargs=0 Format :call CocAction('format')
 command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
 
 

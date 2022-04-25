@@ -1,2 +1,2 @@
 # vim configuration
-Personal configuration for nvim
+Personal configuration for vim
